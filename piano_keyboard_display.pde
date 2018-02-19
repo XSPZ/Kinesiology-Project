@@ -1,5 +1,3 @@
-
-
 // keyboard display
 // add audio to processing
 
@@ -22,6 +20,7 @@ AudioSnippet Mirrors;
 AudioSnippet Filthy;
 AudioSnippet Cry;
 AudioSnippet TKO;
+AudioSnippet Not;
 
 Minim minim;
 
@@ -65,6 +64,7 @@ void setup() {
   Filthy = minim.loadSnippet("Desktop/Penn State U/Spring 2018/KINES 597/codes/Project 1/notes/Filthy.mp3");
   Cry = minim.loadSnippet("Desktop/Penn State U/Spring 2018/KINES 597/codes/Project 1/notes/Cry_Me_A_River.mp3");
   TKO = minim.loadSnippet("Desktop/Penn State U/Spring 2018/KINES 597/codes/Project 1/notes/TKO.mp3");
+  Not = minim.loadSnippet("Desktop/Penn State U/Spring 2018/KINES 597/codes/Project 1/notes/Not_A_Bad_Thing.mp3");
 
   // count mousePressed
   count = new int[8];
@@ -88,19 +88,20 @@ void draw() {
 ////    }
 //// } // 1st for loop
 //  
+
+
   for (int whiteKey = 0; whiteKey < 8; whiteKey++) {
     stroke(1);
     //strokeWeight(3);
     int keyHeight = whiteKey * whiteWidth;
     //blackHover = whiteKey;
     if (mouseX > keyHeight && mouseX <= keyHeight + whiteWidth && mouseY > keyWidth + 450 
-    && mouseY <= height&& mousePressed) {
+    && mouseY <= height && mousePressed) {
       if (mouseX > 0 && mouseX <= 53 && mouseY > 450 && mouseY <= height && mousePressed) {
         C3.play();
       }
         if (!C3.isPlaying()) {
           C3.rewind();
-          //C3.pause();
         }
       //}
     
@@ -156,6 +157,8 @@ void draw() {
     }
     rect(keyHeight, keyWidth+200, whiteWidth, height-200);
   } // 2nd for loop
+  
+  
   
   for (int blackKey = 0; blackKey < 6; blackKey++) {
     float keyHeight = whiteWidth * (blackKey+1) - blackWidth/2;
@@ -303,7 +306,7 @@ void draw() {
     blackHover = blackKey;
     noStroke();
     if (mouseX > keyHeight && mouseX <= keyHeight + blackWidth && mouseY > keyWidth + 200 
-    && mouseY <= blackHeight + 65 && mousePressed && blackHover == blackKey) {
+    && mouseY <= blackHeight + 65 && mousePressed) {
       if (mouseX > 404 && mouseX <= 444 && mouseY > 200 && mouseY <= 425 && mousePressed) {
         //Eb4.play();
         Db4.play();
@@ -348,14 +351,11 @@ void draw() {
       }
         if (!Bb4.isPlaying()) {
           Bb4.rewind();
-        }
-      
-  
-      
+        }    
       stroke(2);
       fill(0, 255, 255);
     } else if (mouseX > keyHeight && mouseX <= keyHeight + blackWidth && mouseY > keyWidth + 200 
-    && mouseY <= blackHeight + 65 && blackHover == blackKey) {
+    && mouseY <= blackHeight + 65) {
       stroke(2);
       fill(50, 255, 50);
     } else {
@@ -370,15 +370,16 @@ void draw() {
   fill(204, 0, 102);
   rect(40, 40, 80, 40, 7);
   fill(0, 255, 128);
-  if (mouseX > 40 && mouseX <= 120 && mouseY > 40 && mouseY <= 80 && mouseClicked()) {
+  if (mouseX > 40 && mouseX <= 120 && mouseY > 40 && mouseY <= 80 && mousePressed) {
       fill(239, 86, 158);
       rect(40, 40, 80, 40, 7);
       //Mirrors.play();
       count[0]++;
- 
-       if (count[1] % 2 == 0) {
+  //}
+       if (count[0] % 2 == 0) {
          //Mirrors.pause();
          Mirrors.rewind();
+         //Mirrors.pause();
         } else {
           Mirrors.play();
         }
@@ -458,7 +459,7 @@ void draw() {
     }
   text(s4, 600, 50, 70, 100);
   
-  String s5 = "Drum2";
+  String s5 = "Drum";
   fill(255, 102, 102);
   rect(40, 140, 80, 40, 7);
   fill(0, 255, 128);
@@ -466,6 +467,7 @@ void draw() {
       //stroke(2);
       fill(51, 119, 255);
       rect(40, 140, 80, 40, 7);
+      
     }
   if (mouseX > 40 && mouseX <= 120 && mouseY > 140 && mouseY <= 180) {
       //stroke(2);
@@ -494,16 +496,20 @@ void draw() {
     }
   text(s6, 200, 150, 120, 100);
   
-  String s7 = "Woodblock2";
+  String s7 = "NotABadThing";
   fill(242, 212, 15);
-  rect(390, 140, 120, 40, 7);
+  rect(390, 140, 130, 40, 7);
   fill(46, 76, 228);
-  if (mouseX > 390 && mouseX <= 510 && mouseY > 140 && mouseY <= 180 && mousePressed) {
+  if (mouseX > 390 && mouseX <= 520 && mouseY > 140 && mouseY <= 180 && mousePressed) {
       //stroke(2);
       fill(102, 255, 102);
-      rect(390, 140, 120, 40, 7);
+      rect(390, 140, 130, 40, 7);
+      Not.play();
+//      if (!Not.isPlaying()) {
+//          Not.rewind();
+//        }
     }
-    if (mouseX > 390 && mouseX <= 510 && mouseY > 140 && mouseY <= 180) {
+    if (mouseX > 390 && mouseX <= 520 && mouseY > 140 && mouseY <= 180) {
       //stroke(2);
       //fill(0, 255, 255);
       textSize(18);
@@ -531,7 +537,34 @@ void draw() {
    }
   text(s8, 600, 150, 90, 100);
   
+  String s9 = "Stop";
+  fill(255, 255, 255);
+  rect(730, 100, 60, 40, 7);
+  fill(255, 0, 0);
+  if (mouseX > 730 && mouseX <= 790 && mouseY > 100 && mouseY <= 140 && mousePressed) {
+    fill(0, 128, 255);
+    rect(730, 100, 60, 40, 7);
+    if (Mirrors.isPlaying()) {
+      Mirrors.pause();
+      Mirrors.rewind();
+    } else if (Filthy.isPlaying()) {
+      Filthy.pause();
+      Filthy.rewind();
+    } else if(TKO.isPlaying()) {
+      TKO.pause();
+      TKO.rewind();
+    } else if(Not.isPlaying()) {
+      Not.pause();
+      Not.rewind();
+    } else if(Cry.isPlaying()) {
+      Cry.pause();
+      Cry.rewind();
+    }
+  }
+  text(s9, 740, 110, 90, 100);
+  
 } // draw function
+
 
 void stop() {
   C3.close(); D3.close(); E3.close();
