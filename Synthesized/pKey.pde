@@ -29,8 +29,11 @@ class pKey{
      }}
     void check(float xpos, float ypos){
       if(keytype== true){
-      if(xpos >= x && xpos <= lowerx && ypos >= height - y/2 && ypos<= lowery){
-       note.play();
+      if(xpos >= x && xpos <= x + lowerx && ypos >= height - lowery/2 && ypos<= y+lowery){
+       note.play();}
+      if(keytype==false){
+        if(xpos >= x && xpos <= x + lowerx && ypos >= height - lowery/2 && ypos<= y+lowery){
+          note.play();}
      }}}
      void check_rewind(){
       if(!note.isPlaying()){
